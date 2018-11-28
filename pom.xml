@@ -66,4 +66,10 @@
 			</plugin> -->
 		</plugins>
 	</build>
+	<repositories>
+        <repository>
+        <id>private</id>
+        <url>http://10.248.37.45/nexus/content/groups/Sinopec-IMP-Public</url>
+        </repository>
+	</repositories>
 </project>
