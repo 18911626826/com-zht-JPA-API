@@ -15,13 +15,13 @@ import com.zht.JPA.API.common.Pagination;
 import com.zht.JPA.API.common.PaginationBean;
 import com.zht.JPA.API.dao.StdFactoryRepositoryCustom;
 import com.zht.JPA.API.dao.common.BaseRepository;
-import com.zht.JPA.API.pojo.StdFactory;
+import com.zht.JPA.API.pojo.stdFactory;
 
-public class StdFactoryRepositoryImpl extends BaseRepository<StdFactory, Long> implements StdFactoryRepositoryCustom{
+public class StdFactoryRepositoryImpl extends BaseRepository<stdFactory, Integer> implements StdFactoryRepositoryCustom{
 	
 	@Transactional(readOnly=false,propagation=Propagation.REQUIRED)
 	@Override
-	public CommonResult updateStdFactory(StdFactory stdFactory) {
+	public CommonResult updateStdFactory(stdFactory stdFactory) {
 		CommonResult cr=new CommonResult();
 		try {
 			stdFactory=getEntityManager().merge(stdFactory);
@@ -41,7 +41,7 @@ public class StdFactoryRepositoryImpl extends BaseRepository<StdFactory, Long> i
 	public CommonResult deleteStdFactory(Long[] facIDs) {
 		CommonResult cr=new CommonResult();
 		try {
-			List<StdFactory> stdFactorys=getStdFactoryList(facIDs);
+			List<stdFactory> stdFactorys=getStdFactoryList(facIDs);
 			stdFactorys.forEach(x->{getEntityManager().remove(x);});
 			
 			cr.setIsSuccess(true);
@@ -54,26 +54,19 @@ public class StdFactoryRepositoryImpl extends BaseRepository<StdFactory, Long> i
 	}
 
 	@Override
-	public StdFactory getSingleStdFactory(Long facID) {
-		//StdFactory stdFactory=getEntityManager().find(StdFactory.class,facID);
-		/*StringBuilder sb=new StringBuilder("select new StdFactory(f.facID,f.facCode,f.facName,f.facNO,t.orgName,f.orgId) from StdFactory f,TBcOrg t where f.orgId=t.id and f.facIsDelete=0");
-		if(facID!=null && facID>0) {
-			sb.append(" and f.facID=:facID");
-		}
-		TypedQuery<StdFactory> factoryQuery=this.getEntityManager().createQuery(sb.toString(),StdFactory.class);
-		factoryQuery.setParameter("facID", facID);
-		return factoryQuery.getSingleResult();*/
-		return this.getEntityManager().find(StdFactory.class, facID);
+	public stdFactory getSingleStdFactory(Long facID) {
+		
+		return this.getEntityManager().find(stdFactory.class, facID);
 	}
 
 	@Override
-	public List<StdFactory> getStdFactoryList(Long[] facIDs) {
-		StringBuilder sb=new StringBuilder("from StdFactory f where 1=1");
+	public List<stdFactory> getStdFactoryList(Long[] facIDs) {
+		StringBuilder sb=new StringBuilder("from stdFactory f where 1=1");
 		Map<String,Object> map=new HashMap<>();
 		if(facIDs!=null && facIDs.length>0) {
-			sb.append(" and f.facID in (:facIDs)");
+			sb.append(" and f.facId in (:facIDs)");
 		}
-		TypedQuery<StdFactory> query=getEntityManager().createQuery(sb.toString(), StdFactory.class);
+		TypedQuery<stdFactory> query=getEntityManager().createQuery(sb.toString(), stdFactory.class);
 		if(facIDs!=null && facIDs.length>0) {
 			query.setParameter("facIDs",Arrays.asList(facIDs));
 		}
@@ -81,15 +74,15 @@ public class StdFactoryRepositoryImpl extends BaseRepository<StdFactory, Long> i
 	}
 
 	@Override
-	public PaginationBean<StdFactory> getStdFactory(Pagination page, String name) {
-		StringBuilder sb=new StringBuilder("from StdFactory f where f.facIsDelete=0");
+	public PaginationBean<stdFactory> getStdFactory(Pagination page, String name) {
+		StringBuilder sb=new StringBuilder("from stdFactory f where f.facIsDelete=0");
 		Map<String,Object> map=new HashMap<>();
 		if(name!=null && !"".equals(name)) {
 			name=name.trim();
 			sb.append(" and (f.facCode like :name escape '/' or f.facName like :name escape '/')");
 			map.put("name", "%"+this.sqlLikeReplace(name)+"%");
 		}
-		sb.append(" order by f.facNO");
+		sb.append(" order by f.facNo");
 		return this.findAll(page, sb.toString(), map);
 	}
 
@@ -119,9 +112,9 @@ public class StdFactoryRepositoryImpl extends BaseRepository<StdFactory, Long> i
 	}
 
 	@Override
-	public List<StdFactory> getStdFactoryListForExport() {
+	public List<stdFactory> getStdFactoryListForExport() {
 		
-		StringBuilder sb=new StringBuilder("select f.FAC_ID facID,f.FAC_CODE facCode,f.FAC_NAME facName,f.FAC_NO facNO,t.id orgId,t.Org_Name orgName from STD_FACTORY f LEFT JOIN T_BC_Org t on f.ORG_ID=t.id and f.FAC_IS_DELETE=0");
+		StringBuilder sb=new StringBuilder("select f.FAC_ID facId,f.FAC_CODE facCode,f.FAC_NAME facName,f.FAC_NO facNO,t.id orgId,t.Org_Name orgName from STD_FACTORY f LEFT JOIN T_BC_Org t on f.ORG_ID=t.id and f.FAC_IS_DELETE=0");
 		
 		sb.append(" order by f.FAC_NO");
 		
@@ -131,12 +124,10 @@ public class StdFactoryRepositoryImpl extends BaseRepository<StdFactory, Long> i
 				.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
 
 		List<Map<String, Object>> list = query.getResultList();
-		List<StdFactory> stdFactoryList=new ArrayList<>();
+		List<stdFactory> stdFactoryList=new ArrayList<>();
 		for (Map<String, Object> m : list) {
-			long facID=(Integer)m.get("facID");
-			
-			StdFactory stdFactory=new StdFactory();
-			stdFactory.setFacID(facID);
+			stdFactory stdFactory=new stdFactory();
+			stdFactory.setFacID((Integer)m.get("facId"));
 			
 			stdFactory.setFacCode((String)m.get("facCode"));
 			stdFactory.setFacName((String)m.get("facName"));
@@ -148,4 +139,5 @@ public class StdFactoryRepositoryImpl extends BaseRepository<StdFactory, Long> i
 		}
 		return stdFactoryList;
 	}
+	
 }

@@ -9,7 +9,7 @@ import java.util.List;
 import com.zht.JPA.API.common.CommonResult;
 import com.zht.JPA.API.common.Pagination;
 import com.zht.JPA.API.common.PaginationBean;
-import com.zht.JPA.API.pojo.StdFactory;
+import com.zht.JPA.API.pojo.stdFactory;
 
 public interface StdFactoryRepositoryCustom {
 	
@@ -18,7 +18,7 @@ public interface StdFactoryRepositoryCustom {
 	 * @param stdFactory 分厂信息
 	 * @return
 	 */
-	CommonResult updateStdFactory(StdFactory stdFactory);
+	CommonResult updateStdFactory(stdFactory stdFactory);
 	
 	/**
 	 * 分厂信息     删除（持久层）
@@ -32,14 +32,14 @@ public interface StdFactoryRepositoryCustom {
 	 * @param facID 分厂id
 	 * @return
 	 */
-	StdFactory getSingleStdFactory(Long facID);
+	stdFactory getSingleStdFactory(Long facID);
 	
 	/**
 	 * 分厂信息     得到多个分厂（持久层）
 	 * @param facIDs 分厂id数组
 	 * @return
 	 */
-	List<StdFactory> getStdFactoryList(Long[] facIDs);
+	List<stdFactory> getStdFactoryList(Long[] facIDs);
 	
 	/**
 	 * 分厂信息     分页获得分厂列表（持久层）
@@ -47,7 +47,7 @@ public interface StdFactoryRepositoryCustom {
 	 * @param name 模糊查询条件   分厂编码   分厂名称
 	 * @return
 	 */
-	PaginationBean<StdFactory> getStdFactory(Pagination page,String name);
+	PaginationBean<stdFactory> getStdFactory(Pagination page,String name);
 	
 	/**
 	 * 分厂信息    根据分厂编码校验（持久层）
@@ -69,5 +69,5 @@ public interface StdFactoryRepositoryCustom {
 	 * @param name   编码或者名称
 	 * @return
 	 */
-	List<StdFactory> getStdFactoryListForExport();
+	List<stdFactory> getStdFactoryListForExport();
 }

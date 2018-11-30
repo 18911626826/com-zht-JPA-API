@@ -1,17 +1,19 @@
 package com.zht.JPA.API.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
-import com.zht.JPA.API.pojo.StdFactory;
+import com.zht.JPA.API.pojo.stdFactory;
 
 /**
  * 分厂  持久层  接口
  * @author haitao.zhang 2018-11-8
  * @version 1.0
  */
-public interface StdFactoryRepository extends JpaRepository<StdFactory,Long>,StdFactoryRepositoryCustom{
+public interface StdFactoryRepository extends JpaRepository<stdFactory,Integer>,StdFactoryRepositoryCustom{
 	
 	/**
 	 * 分厂信息     添加（持久层）
@@ -27,5 +29,10 @@ public interface StdFactoryRepository extends JpaRepository<StdFactory,Long>,Std
 	@Query(value="insert dbo.STD_FACTORY (FAC_CODE,FAC_NAME,FAC_NO,FAC_CREATE_USER,ORG_ID) values (?1,?2,?3,?4,?5)",nativeQuery = true)
 	void insert(String facCode,String facName,Integer facNO,String facCreateUser,Integer orgId);
 	
-	
+	/**
+	 * 下拉列表
+	 * @return
+	 */
+	@Query(value="select f.FAC_CODE,f.FAC_NAME from STD_FACTORY f",nativeQuery=true)
+	List<stdFactory> getCodeAndNameforList();
 }
