@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,8 +35,9 @@ public class FactoryController {
 			}
 	}
 	
-	@GetMapping("/getCodeAndNameList")
-	public List<stdFactory> getStdFactory(){
-		return stdFactoryRepository.getCodeAndNameforList();
+	@GetMapping("/getPage")
+	public Page<stdFactory> getStdFactoryJPA(int pageIndex,int pageSize,String name){
+		Page<stdFactory> pages=stdFactoryRepository.findAll(new PageRequest(pageIndex, pageSize));
+		return pages;
 	}
 }

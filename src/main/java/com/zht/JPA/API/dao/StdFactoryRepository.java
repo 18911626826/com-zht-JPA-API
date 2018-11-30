@@ -29,10 +29,4 @@ public interface StdFactoryRepository extends JpaRepository<stdFactory,Integer>,
 	@Query(value="insert dbo.STD_FACTORY (FAC_CODE,FAC_NAME,FAC_NO,FAC_CREATE_USER,ORG_ID) values (?1,?2,?3,?4,?5)",nativeQuery = true)
 	void insert(String facCode,String facName,Integer facNO,String facCreateUser,Integer orgId);
 	
-	/**
-	 * 下拉列表
-	 * @return
-	 */
-	@Query(value="select f.FAC_CODE,f.FAC_NAME from STD_FACTORY f",nativeQuery=true)
-	List<stdFactory> getCodeAndNameforList();
 }
