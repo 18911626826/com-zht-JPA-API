@@ -37,11 +37,6 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.3.1</version>
 		</dependency>
-		<!-- <dependency> <groupId>com.microsoft.sqlserver</groupId> <artifactId>sqljdbc4</artifactId> 
-			<version>4.0</version> </dependency> -->
-		<!-- <dependency> <groupId>com.zaxxer</groupId> <artifactId>HikariCP</artifactId> 
-			</dependency> <dependency> <groupId>com.microsoft.sqlserver</groupId> <artifactId>sqljdbc4</artifactId> 
-			<version>4.0</version> </dependency> -->
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
@@ -69,10 +64,6 @@
 					<fork>true</fork>
 				</configuration>
 			</plugin>
-			<!-- <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-			</plugin> -->
 		</plugins>
 	</build>
 	<repositories>
