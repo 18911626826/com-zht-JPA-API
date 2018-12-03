@@ -6,6 +6,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +27,7 @@ public class FactoryController {
 	@GetMapping()
 	public PaginationBean<stdFactory> getStdFactory(Pagination page,String name){
 		PaginationBean<stdFactory> pageFactory=new PaginationBean<>();
-		if(StringUtils.isNotEmpty(name)) name=name.trim();//不等于空就去掉空格
+		if(StringUtils.isNotBlank(name)) name=StringUtils.trimToNull(name.trim());//不等于空就去掉空格
 			try {
 				return stdFactoryRepository.getStdFactory(page, name);
 			} catch (Exception e) {
@@ -35,9 +37,15 @@ public class FactoryController {
 			}
 	}
 	
-	@GetMapping("/getPage")
-	public Page<stdFactory> getStdFactoryJPA(int pageIndex,int pageSize,String name){
-		Page<stdFactory> pages=stdFactoryRepository.findAll(new PageRequest(pageIndex, pageSize));
-		return pages;
+	@GetMapping("/getPageJPA")
+	public PaginationBean<stdFactory> getStdFactoryJPA(Pagination page,String name){
+		PageRequest pr=new PageRequest(page.getPageIndex(), page.getPageSize());
+		
+		Page<stdFactory> stdsPage=stdFactoryRepository.findByFacIsDeleteNotNullAndFacCodeLikeOrFacNameLikeOrderByFacNo("%"+name+"%","%"+name+"%",pr);
+		
+		PaginationBean<stdFactory> pageff=new PaginationBean<>(page,stdsPage.getTotalElements());
+		pageff.setPageList(stdsPage.getContent());
+		return pageff;
 	}
+
 }
