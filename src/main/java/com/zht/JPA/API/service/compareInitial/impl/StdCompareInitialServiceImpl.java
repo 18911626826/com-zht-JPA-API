@@ -47,7 +47,7 @@ public class StdCompareInitialServiceImpl implements stdCompareInitialService{
 		// TODO Auto-generated method stub
 				CommonResult cr=new CommonResult();
 				try {
-					stdCompareInitial entityRet=stdCompareInitialRepository.update(entity);
+					stdCompareInitial entityRet=stdCompareInitialRepository.saveAndFlush(entity);
 					cr.setIsSuccess(true);
 					cr.setMessage("更新成功！");
 					cr.setResult(entityRet);

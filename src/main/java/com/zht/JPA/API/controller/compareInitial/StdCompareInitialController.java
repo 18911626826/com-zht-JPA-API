@@ -48,7 +48,15 @@ public class StdCompareInitialController {
 	 */
 	@PostMapping
 	public CommonResult add(stdCompareInitial entity)throws Exception{
+		CommonResult cr=new CommonResult();
+		cr.setIsSuccess(false);
+		
+		if(entity.getCompInitId()==null) {	
 			return service.add(entity);
+		}else {
+			cr.setMessage("添加记录不能指定ID！");
+		    return cr;
+		}
 	}
 	
 	/**
@@ -80,7 +88,20 @@ public class StdCompareInitialController {
 	 */
 	@PutMapping
 	public CommonResult update(stdCompareInitial entity)throws Exception{
-		return service.update(entity);
+		CommonResult cr=new CommonResult();
+		cr.setIsSuccess(false);
+		
+		if(entity!=null && entity.getCompInitId()!=null) {
+			if(null!=service.getOne(entity.getCompInitId())) {
+				return service.update(entity);
+			}else {
+				cr.setMessage("更新的记录不存在！");
+			    return cr;
+			}
+		}else {
+		    cr.setMessage("更新记录的ID不能为空！");
+		    return cr;
+		}
 	}
 	
 	/**

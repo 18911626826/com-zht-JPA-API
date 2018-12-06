@@ -15,5 +15,5 @@ import com.zht.JPA.API.pojo.compareInitial.stdCompareInitial;
  */
 public interface StdCompareInitialRepositoryCustom {
 	
-	stdCompareInitial update(stdCompareInitial entity);
+	//stdCompareInitial update(stdCompareInitial entity);
 }
