@@ -7,10 +7,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.zht.JPA.API.common.Pagination;
-import com.zht.JPA.API.common.PaginationBean;
 import com.zht.JPA.API.dao.StdFactoryRepository;
 import com.zht.JPA.API.pojo.stdFactory;
+import com.zht.JPA.COMMON.Pagination;
+import com.zht.JPA.COMMON.PaginationBean;
 
 @RestController
 @RequestMapping(value="com/zht/factory")

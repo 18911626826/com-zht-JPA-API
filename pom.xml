@@ -25,14 +25,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.3.1</version>
@@ -42,16 +34,10 @@
 			<artifactId>mssql-jdbc</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-            <groupId>pcitc</groupId>
-            <artifactId>ettool</artifactId>
-            <version>1.2.7</version>
-        </dependency>
         <dependency>
         	<groupId>org.springframework.boot</groupId>
         	<artifactId>spring-boot-devtools</artifactId>
         	<version>1.4.0.RELEASE</version>
-        	<!-- <scope>test</scope> -->
         </dependency>
 		<dependency>
 		    <groupId>org.projectlombok</groupId>
@@ -59,6 +45,12 @@
 		    <version>1.16.16</version>
     		<scope>provided</scope>
 		</dependency>
+		<!-- 引入COMMON模块 -->
+		<dependency>
+            <groupId>com.zht.JPA</groupId>
+            <artifactId>COMMON</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 	</dependencies>
 
 	<build>
@@ -72,10 +64,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<repositories>
-        <repository>
-        <id>private</id>
-        <url>http://10.248.37.45/nexus/content/groups/Sinopec-IMP-Public</url>
-        </repository>
-	</repositories>
 </project>

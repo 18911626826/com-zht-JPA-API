@@ -1,21 +1,19 @@
 package com.zht.JPA.API.dao.common;
 
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.data.repository.NoRepositoryBean;
-
-import com.zht.JPA.API.common.Pagination;
-import com.zht.JPA.API.common.PaginationBean;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.math.BigInteger;
 import java.util.Map;
 import java.util.Map.Entry;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.repository.NoRepositoryBean;
+import com.zht.JPA.COMMON.Pagination;
+import com.zht.JPA.COMMON.PaginationBean;
 
 
 /*

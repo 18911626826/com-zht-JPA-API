@@ -1,7 +1,8 @@
 package com.zht.JPA.API.service.compareInitial;
 
-import com.zht.JPA.API.common.CommonResult;
 import com.zht.JPA.API.pojo.compareInitial.stdCompareInitial;
+import com.zht.JPA.COMMON.exception.MyException;
+import com.zht.JPA.COMMON.util.CommonResult;
 
  /**
   * 
@@ -62,5 +63,5 @@ public interface stdCompareInitialService{
 	 * @param ID
 	 * @return
 	 */
-	stdCompareInitial getOne(Integer ID)throws Exception;
+	stdCompareInitial getOne(Integer ID)throws MyException;
 }

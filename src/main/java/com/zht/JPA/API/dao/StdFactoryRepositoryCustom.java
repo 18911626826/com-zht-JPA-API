@@ -6,10 +6,10 @@ package com.zht.JPA.API.dao;
  */
 
 import java.util.List;
-import com.zht.JPA.API.common.CommonResult;
-import com.zht.JPA.API.common.Pagination;
-import com.zht.JPA.API.common.PaginationBean;
 import com.zht.JPA.API.pojo.stdFactory;
+import com.zht.JPA.COMMON.Pagination;
+import com.zht.JPA.COMMON.PaginationBean;
+import com.zht.JPA.COMMON.util.CommonResult;
 
 public interface StdFactoryRepositoryCustom {
 	

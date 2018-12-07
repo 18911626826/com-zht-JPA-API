@@ -3,10 +3,11 @@ package com.zht.JPA.API.service.compareInitial.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zht.JPA.API.common.CommonResult;
 import com.zht.JPA.API.dao.compareInitial.StdCompareInitialRepository;
 import com.zht.JPA.API.pojo.compareInitial.stdCompareInitial;
 import com.zht.JPA.API.service.compareInitial.stdCompareInitialService;
+import com.zht.JPA.COMMON.exception.MyException;
+import com.zht.JPA.COMMON.util.CommonResult;
 
 /**
  * 
@@ -76,13 +77,13 @@ public class StdCompareInitialServiceImpl implements stdCompareInitialService{
 	}
 
 	@Override
-	public stdCompareInitial getOne(Integer ID) throws Exception{
+	public stdCompareInitial getOne(Integer ID) throws MyException{
 		// TODO Auto-generated method stub
 		try {
 			return stdCompareInitialRepository.findOne(ID);
 		}catch(Exception e) {
 			e.printStackTrace();
-			throw new Exception("查询失败！");
+			throw new MyException("查询失败！");
 		}
 	}
 	

@@ -10,12 +10,12 @@ import javax.persistence.TypedQuery;
 import org.hibernate.transform.Transformers;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import com.zht.JPA.API.common.CommonResult;
-import com.zht.JPA.API.common.Pagination;
-import com.zht.JPA.API.common.PaginationBean;
 import com.zht.JPA.API.dao.StdFactoryRepositoryCustom;
 import com.zht.JPA.API.dao.common.BaseRepository;
 import com.zht.JPA.API.pojo.stdFactory;
+import com.zht.JPA.COMMON.Pagination;
+import com.zht.JPA.COMMON.PaginationBean;
+import com.zht.JPA.COMMON.util.CommonResult;
 
 public class StdFactoryRepositoryImpl extends BaseRepository<stdFactory, Integer> implements StdFactoryRepositoryCustom{
 	
@@ -127,11 +127,11 @@ public class StdFactoryRepositoryImpl extends BaseRepository<stdFactory, Integer
 		List<stdFactory> stdFactoryList=new ArrayList<>();
 		for (Map<String, Object> m : list) {
 			stdFactory stdFactory=new stdFactory();
-			stdFactory.setFacID((Integer)m.get("facId"));
+			stdFactory.setFacId((Integer)m.get("facId"));
 			
 			stdFactory.setFacCode((String)m.get("facCode"));
 			stdFactory.setFacName((String)m.get("facName"));
-			stdFactory.setFacNO((Integer)m.get("facNO"));
+			stdFactory.setFacNo((Integer)m.get("facNO"));
 			stdFactory.setOrgId((Integer)m.get("orgId"));
 			stdFactory.setOrgName((String)m.get("orgName"));
 			
