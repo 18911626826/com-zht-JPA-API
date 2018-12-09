@@ -64,4 +64,44 @@
 			</plugin>
 		</plugins>
 	</build>
+	<!-- 配置资源库私服  单个maven项目     所有maven统一配置   需要在Settings中指定 -->
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<layout>default</layout>
+			<name>Nexus Repository</name>
+			<url>http://localhost:8081/nexus/content/groups/public/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
+	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>Nexus Repository</name>
+			<url>http://localhost:8081/nexus/content/groups/public/</url>
+			<layout>default</layout>
+			<releases><enabled>true</enabled></releases>
+			<snapshots><enabled>true</enabled></snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+	
+	<!-- 上传jar资源到私服   配置   配合Settings配置 -->
+	<distributionManagement>
+		<repository>
+			<id>nexus-release</id>
+			<name>nexusReleaseRepo</name>
+			<url>http://localhost:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshot</id>
+			<name>nexusSnapshotsRepo</name>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
